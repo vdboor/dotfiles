@@ -1,0 +1,362 @@
+" Local vimrc enhancements
+" Diederik van der Boor <vdboor --at-- codingdomain.com>
+"
+" Because this script enables smartindent,
+" pasting text can be done by hitting <F10> first.
+"
+" Activate this script by adding the following to /etc/vimrc:
+" if filereadable("/etc/vimrc.local")
+"   source("/etc/vim/vimrc.local")
+" endif
+"
+" Use ":help <option>" or ":help options"
+" for information about the various settings
+"
+" use ":mkvim" to store your setting changes to ~/.vimrc
+
+
+" Special defined keys:
+" F2  - comment the selected lines in visual mode    | in normal mode, toggle menu
+" F3  - uncomment the selected lines in visual mode  | in normal mode, toggle NERDtree
+" F4  - taglist list
+" F5  - vimdiff update
+" F7  - launch spell checker (requires vimspell plugin)
+" F10 - enable paste mode
+" F11 - disable paste mode 
+
+
+" reset to vim-defaults
+if &compatible          " only if not set before:
+  set nocompatible      " use vim-defaults instead of vi-defaults (easier, more user friendly)
+endif
+
+" environment settings
+"set autochdir           " auto change to current directory
+autocmd BufEnter * lcd %:p:h
+set dir=~/.vim,.
+
+" display settings
+set background=dark     " enable for dark terminals
+set noerrorbells        " don't whine
+set visualbell t_vb=    " and don't make faces
+
+set nowrap              " don't wrap lines
+set scrolloff=2         " 2 lines above/below cursor when scrolling
+set number              " show line numbers
+set showmatch           " show matching bracket (briefly jump)
+set showmode            " show mode in status bar (insert/replace/...)
+set showcmd             " show typed command in status bar
+set ruler               " show cursor position in status bar
+set title               " show file in titlebar
+set showfulltag         " show more info while completing
+set wildmenu            " completion with menu
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
+set laststatus=2          " use 2 lines for the status bar
+"set wildmode=longest,list " bash-like tab completion
+set list                        " show invisible characters
+set listchars=tab:▸\ ,trail:·  " but only show tabs and trailing whitespace
+"set listchars=tab:▸\ ,eol:¬,trail:☠ " 
+set matchtime=2         " show matching bracket for 0.2 seconds
+set matchpairs+=<:>     " specially for html
+
+
+
+" editor settings
+set esckeys             " map missed escape sequences (enables keypad keys)
+set ignorecase          " first enable ignore case for searching
+set smartcase           " then enable smart case (case-sensetive if you use uppercase characters)
+set smartindent         " smart auto indenting
+set smarttab            " smart tab handling for indenting
+set magic               " change the way backslashes are used in search patterns
+set bs=indent,eol,start " Allow backspacing over everything in insert mode
+
+set tabstop=4           " number of spaces a tab counts for
+set shiftwidth=4        " spaces for autoindents
+set softtabstop=4       " spaces for back/delete
+"set expandtab           " turn a tabs into spaces
+
+let mapleader = ","     " lead with ,
+
+
+" system settings
+set lazyredraw          " no redraws in macros
+set confirm             " get a dialog when :q, :w, or :wq fails
+set nobackup            " no backup~ files.
+"set fileformat=unix     " file mode is unix
+"set fileformats=unix    " only detect unix file format, displays that ^M with dos files
+
+set viminfo='20,\"500   " remember last copy/cut lines after quitting in a .viminfo file -- 20 jump links, regs up to 500 lines
+
+set history=50          " keep 50 lines of command history
+"set hidden              " hide buffers instead of prompting to save (for NERDtree)
+
+set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode)
+"set selectmode=mouse    " start selection when using mouse
+
+"set swapsync=sync       " the swap is synced with sync, not fsync
+"set updatecount=20      " Number of characters typed before doing an update
+"set updatetime=500      " Number of milliseconds before doing an update
+
+
+
+" Suffixes that get lower priority when doing tab completion for filenames.
+" These are files we are not likely to want to edit or read.
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.class
+
+
+" I can't type..!
+nmap :W :w
+nmap :X :x
+nmap :Q :q
+
+
+" Disable the annoying Ex mode, use Q for formatting
+map Q gq
+
+" console menu
+"source $VIMRUNTIME/menu.vim
+set cpoptions-=<
+set wildcharm=<C-Z>
+
+" Key bindings
+map <F2> :emenu <C-Z>
+vmap              <F2> :s/^/\/\/\ /g <CR> :noh <CR>  " Map F2 to comment the selected lines in visual mode (// style comments)
+vmap              <F3> :s/^\/\/\ //g <CR> :noh <CR>  " Map F3 to uncomment the selected lines in visual mode
+nnoremap <silent> <F3> :NERDTreeToggle<CR>           " NERDtree explorer
+nnoremap <silent> <F4> :TlistToggle<CR>              " open tag list
+map               <F5> :diffupdate<CR>               " vimdiff update
+imap              <F5> <C-O>:diffupdate<CR>
+nnoremap <silent> <F7> :SpellCheck <CR>              " spell check on demand
+map               <F10> :set paste<CR>
+map               <F11> :set nopaste<CR>
+imap              <F10> <C-O>:set paste<CR>
+imap              <F11> <nop>
+nmap              <leader>l :set list!<CR>    " toggle listchars
+set pastetoggle=<F11>
+
+" CTRL-g shows filename and buffer number, too.
+nnoremap <C-g> 2<C-g>
+
+
+" " if you paste and the indentation gets fscked just press C-A:
+" " inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
+
+
+" Auto completion (and use ACP plugin)
+" File completion: <C-X><C-F>
+" Line completion: <C-X><C-L>
+" Omni completion: <C-X><C-O> 
+
+" http://vim.wikia.com/wiki/VimTip1228
+" Configure popup like other IDE's  (in combination with ACP)
+inoremap <expr> <Tab>      pumvisible() ? "\<C-N>" : "\<Tab>"
+"inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+
+" " Use of the filetype plugins, auto completion and indentation support
+filetype plugin indent on
+
+
+" color settings (if terminal/gui supports it)
+if &t_Co > 2 || has("gui_running")
+  syntax on          " enable colors
+  "set t_Co=256       " better colors
+  set incsearch      " search incremently
+  set hlsearch       " highlight search
+  "autocmd InsertEnter * :let @/=""
+  "autocmd InsertLeave * :let @/=""
+endif
+
+
+" theme settings for GUI
+if has("gui_running")
+  set number          "mouse won't select line numbers
+  colorscheme koehler
+  highlight Normal guibg=black guifg=grey90
+  "set mousemodel=popup_setpos
+
+  " Emulate color scheme of the Linux console.
+  set bg=dark
+  colorscheme Default
+  autocmd ColorScheme * highlight Normal guifg=GhostWhite guibg=#232323   " guibg=gray10 
+
+  " kvim/gvim use different notations for fonts.
+  if has("gui_kde") 
+    set guioptions=agimLtT  " this appears to fix the window resizing in kvim (hides scrollbar)
+    set guifont=Fixed\ [Misc]/10/-1/5/50/0/0/0/1/0 
+  else
+    if has("gui_gtk") 
+      set guifont=-misc-fixed-medium-r-normal-*-*-100-*-*-c-*-iso10646-1 
+      " for terminal: dec-terminal-medium-r-normal-*-*-140-*-*-c-*-iso8859-1 
+    else
+      if has("win32")
+        set guifont=Lucida_Console:h10:cANSI
+        "set guifont=Courier_New:h10:cANSI
+        "set guifont=DejaVu_Sans_Mono:h10:cANSI
+        "set guifont=Fixedsys:h9:cANSI
+        set lines=64
+        set columns=140
+        set mouse=a
+        set keymodel=    " don't require to hold Ctrl/Shift for selections (default behavior of :behave mswin)
+        "behave xterm
+      endif
+    endif
+  endif
+endif
+
+
+
+" Bad whitespace
+highlight BadWhitespace ctermbg=red guibg=red
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+
+" Completion menu options
+"  menuone = open for 1 match
+"  longest = insert longest matching
+"  preview = more info in preview window
+set completeopt=menuone,longest,preview
+highlight Pmenu guibg=gray40 gui=bold
+":highlight Pmenu ctermbg=238 gui=bold
+
+
+" Taglist
+let g:ctags_statusline=1          " Display function name in status bar:
+let generate_tags=1               " Automatically start script
+let Tlist_Use_Horiz_Window=0      " Displays taglist results in a vertical window:
+
+" Various Taglist diplay config:
+let Tlist_Use_Right_Window = 1
+let Tlist_Compact_Format = 0
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_File_Fold_Auto_Close = 1
+
+
+" vimspell plugin settings
+"let loaded_vimspell = 0 
+let spell_insert_mode = 0
+let spell_language_list = "english,nederlands"
+"let spell_auto_type = "tex,mail,text,html,xhtml,sgml,otl,cvs,none"
+
+
+" NERDtree plugin settings
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
+
+" pylint settings
+let g:pylint_onwrite = 1
+let g:pylint_signs = 0
+
+
+"Delete trailing white space, useful for Python ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+
+
+" Vim error window (:help cope)
+map <leader>cc :botright cope<cr>
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+" just subsitute ESC with ,
+map <leader> ,
+
+
+" " Use of the filetype plugins, auto completion and indentation support
+filetype plugin indent on
+
+
+
+" file type specific settings
+if has("autocmd")
+
+  " For debugging
+  "set verbose=9
+
+
+  " always read syntax from start
+  autocmd BufEnter * :syntax sync fromstart
+
+
+  " if bash is sh.
+  let bash_is_sh=1
+
+
+  " Auto add headers file
+  " http://www.thegeekstuff.com/2008/12/vi-and-vim-autocommand-3-steps-to-add-custom-header-to-your-file/
+
+  "autocmd FileType c,cpp,slang set cindent
+
+  if filereadable("/etc/vim/html.tpl")
+    autocmd bufnewfile *.html source /etc/vim/html.tpl
+  endif
+
+  " :map :write :!make && ./run
+
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vdboor
+    au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,docbook set smartindent shiftwidth=2 softtabstop=2 expandtab
+    au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
+
+    " Confirm to PEP8
+    " For auto-completion, installing vim-enhanced was needed + filetype plugin on
+    au FileType python set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+    au FileType python set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
+    if has('python')
+        "echoerr "Error: the pyflakes.vim plugin requires Vim to be compiled with +python"
+        au FileType python compiler pylint
+    endif
+
+
+    " Remove trailing whitespace
+    autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+
+    au FileType perl set formatoptions=croq smartindent shiftwidth=2 softtabstop=2 cindent cinkeys='0{,0},!^F,o,O,e' " tags=./tags,tags,~/devel/tags,~/devel/C
+    " formatoption:
+    "   t - wrap text using textwidth
+    "   c - wrap comments using textwidth (and auto insert comment leader)
+    "   r - auto insert comment leader when pressing <return> in insert mode
+    "   o - auto insert comment leader when pressing 'o' or 'O'.
+    "   q - allow formatting of comments with "gq"
+    "   a - auto formatting for paragraphs
+    "   n - auto wrap numbered lists
+
+    " Reload vimrc on editing
+    autocmd BufWritePost .vimrc,vimrc.local source %
+  augroup END
+
+
+  " Always jump to the last known cursor position. 
+  " Don't do it when the position is invalid or when inside
+  " an event handler (happens when dropping a file on gvim). 
+  autocmd BufReadPost * 
+    \ if line("'\"") > 0 && line("'\"") <= line("$") | 
+    \   exe "normal g`\"" | 
+    \ endif 
+    
+endif " has("autocmd")
+
+
+" Added to default to high security (from Gentoo; bug #14088).
+" Gentoo devs changed this from "modelines=0" to "nomodeline"
+" according to the conversation on the vim devel mailing list:
+" http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=212696
+" http://article.gmane.org/gmane.editors.vim.devel/4410
+" (SUSE's default vimrc still uses "modelines=0")
+set nomodeline   " disable the magic "vim: .." lines in files
+
+
+" end of file

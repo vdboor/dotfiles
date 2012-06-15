@@ -1,0 +1,25 @@
+[user]
+	name = Diederik van der Boor
+	email = vdboor@edoburu.nl
+[core]
+	editor = vim
+	pager = less -FiXRMS
+[color]
+	ui = auto
+[alias]
+	add = add -v
+	st = status
+	staged = diff --staged -C
+	unstage = reset HEAD
+	up = pull --rebase
+	diff-all = diff -C HEAD
+	lg = log --all --graph --decorate
+	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
+	log-timeline = log --format='%h %an %ar - %s'
+	diff-stat = diff -b --stat=200
+	log-local = log --oneline origin..HEAD
+	log-fetched = log --oneline HEAD..origin/master
+	svncommit = !git stash && git svn dcommit --rmdir && git stash pop
+[log]
+	decorate = short
+	date = local

@@ -1,0 +1,62 @@
+# For tracking /etc/ changes in git, save this file as /etc/.gitignore
+#
+# and run:
+#
+#   cd /etc/
+#   git init .
+#   git add .
+#   git commit
+#
+
+
+# new and old versions of config files, stored by apt/rpm
+*.rpm*
+*.YaST2save
+
+# old versions of files
+*.old
+
+# mount(8) records system state here, no need to store these
+blkid.tab
+blkid.tab.old
+
+# some other files in /etc that typically do not need to be tracked
+nologin
+ld.so.cache
+mtab
+mtab.fuselock
+.pwd.lock
+network/run
+adjtime
+lvm/cache
+X11/xdm/authdir/authfiles/*
+ntp.conf.dhcp
+.initctl
+webmin/fsdump/*.status
+webmin/webmin/oscache
+apparmor.d/cache/*
+service/*/supervise/*
+service/*/log/supervise/*
+sv/*/supervise/*
+sv/*/log/supervise/*
+*.elc
+aliases.db
+postfix/*.db
+postfix/*/*.db
+MailScanner/*.sites.conf
+
+# Files that change all the time
+init.d/.depend.stop
+init.d/rc*.d/
+
+# editor temp files
+*~
+.*.sw?
+.sw?
+\#*\#
+DEADJOE
+
+# razor lock files
+mail/spamassassin/razor/razor-agent.log
+mail/spamassassin/razor/servers.catalogue.lst.lock
+mail/spamassassin/razor/servers.nomination.lst.lock

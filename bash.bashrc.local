@@ -1,0 +1,69 @@
+# Local bashrc file
+# Diederik van der Boor <vdboor --at-- codingdomain.com>
+
+if [ -z "$PS1" -o -z "$TERM" ]; then
+  return
+fi
+
+
+# Make 'ls' easier to use
+alias ls='ls -FG'
+alias l='ls -lh'
+alias ..='cd ..'
+
+# Git completion
+source /usr/local/git/contrib/completion/git-completion.bash
+export PATH=$PATH:/opt/local/bin:/opt/flex_sdk_4/bin/:/Library/PostgreSQL/9.1/bin/:/usr/local/mysql/bin/:/usr/texbin/
+export FLEX_HOME=/opt/flex_sdk_4/
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
+
+
+
+# Make a nicer prompt
+if [ -x "/etc/profile.d/bash-prompt-color.sh" ];
+then
+  . /etc/profile.d/bash-prompt-color.sh
+fi
+
+# Grep color (for matching strings)
+export GREP_COLOR=31
+alias grep='grep --colour=auto'
+
+# Allow less to handle terminal colors (escape codes)
+export LESS="$LESS -R"
+
+
+# Diff color
+alias diff='colordiff'
+
+
+# grep helper
+function grepall()
+{
+  find . -path '*/.svn/*'  -prune \
+     -or -path '*/CVS/*'   -prune \
+     -or -path '*/.deps/*' -prune \
+     -or -path '*/.libs/*' -prune \
+     -or -name '*.o'       -prune \
+     -or -type f -print0 | xargs -0 grep --colour=auto "$@"
+  # does not work: grep -i -R --exclude '\.svn' $* .
+}
+
+function vimgrep()
+{
+  filelist="` find . -path '*/.svn/*' -prune -or -type f -print0 | xargs -0 grep -l \"$*\" | sort `"
+
+  if [ -z "$filelist" ]
+  then
+  	echo "No files found" >&2
+  else
+    # does not handle spaces though..
+    # also does not handle escapes
+	echo $filelist
+    vim -c "/$1" `echo $filelist | xargs`
+  fi
+}
+
+
+# g++ function
+alias g++kde='g++ -L /opt/kde3/lib -I /opt/kde3/include/ -L /usr/lib/qt3/lib/ -I /usr/lib/qt3/include/ -l kdecore -l qt-mt'
