@@ -13,7 +13,9 @@ alias ..='cd ..'
 
 # Git completion
 source /usr/local/git/contrib/completion/git-completion.bash
-export PATH=$PATH:/opt/local/bin:/opt/flex_sdk_4/bin/:/Library/PostgreSQL/9.1/bin/:/usr/local/mysql/bin/:/usr/texbin/
+#export PATH=$PATH:/opt/local/bin:/opt/flex_sdk_4/bin/:/Library/PostgreSQL/9.1/bin/:/usr/local/mysql/bin/:/usr/texbin/
+export PATH=$PATH:/opt/homebrew/bin:/opt/flex_sdk_4/bin/:/Library/PostgreSQL/9.1/bin/:/usr/local/mysql/bin/:/usr/texbin/
+
 export FLEX_HOME=/opt/flex_sdk_4/
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
 
