@@ -15,7 +15,7 @@
 	diff-all = diff -C HEAD
 	lg = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
-	log-timeline = log --format='%h %an %ar - %s'
+	log-timeline = log --format='%Cred%h%Creset %an %Cgreen(%ar)%Creset - %s'
 	diff-stat = diff -b --stat=200
 	log-local = log --oneline origin..HEAD
 	log-fetched = log --oneline HEAD..origin/master
@@ -23,3 +23,15 @@
 [log]
 	decorate = short
 	date = local
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+	insteadOf = "github:"
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
