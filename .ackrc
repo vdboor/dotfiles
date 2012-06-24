@@ -1,0 +1,4 @@
+--type-add=js=.json
+--type-set=rst=.rst
+--ignore-dir=migrations
+--ignore-dir=.idea
