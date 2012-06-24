@@ -20,9 +20,10 @@ export PATH=$PATH:/opt/homebrew/bin:/opt/flex_sdk_4/bin:/Library/PostgreSQL/9.1/
 export FLEX_HOME=/opt/flex_sdk_4/
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
 
+export EDITOR=vim
+export LESS="$LESS -R"  # Handle color escape codes
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 export GREP_COLOR=31
-export LESS="$LESS -R"  # Handle color escape codes
 
 
 # Git completion

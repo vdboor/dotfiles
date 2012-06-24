@@ -4,6 +4,7 @@
 [core]
 	editor = vim
 	pager = less -FiXRMS
+	excludesfile = /etc/gitignore_global
 [color]
 	ui = auto
 [alias]
