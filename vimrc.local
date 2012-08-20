@@ -296,6 +296,9 @@ if has("autocmd")
   " always read syntax from start
   autocmd BufEnter * :syntax sync fromstart
 
+  "auto resize split windows on terminal resize
+  autocmd VimResized * wincmd =
+
 
   " if bash is sh.
   let bash_is_sh=1
