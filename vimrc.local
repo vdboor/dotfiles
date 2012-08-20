@@ -251,7 +251,7 @@ let spell_language_list = "english,nederlands"
 
 " Flake8
 let g:flake8_max_line_length=99
-"let g:flake8_ignore="E501,W293"
+let g:flake8_ignore="E501,E303"  " Line too long, too many empty lines, optional (W293 blank line contains whitespace)
 autocmd BufWritePost *.py call Flake8()
 
 
