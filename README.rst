@@ -37,7 +37,7 @@ Features
     username@ttys002 ~/Sites/example (master) $
     username@remote.example.com /srv/www $
 
-* Differ for Local shell (shows tty) and remote SSH shell (shows hostname)>
+* Differ for Local shell (shows tty) and remote SSH shell (shows hostname).
 * Differ for Regular user (green prompt) or root user (red prompt).
 * Add git branch/status in the prompt.
 
@@ -60,5 +60,9 @@ Features
 
 ``gitignore``:
 
-* useful to place ``/etc/`` into git, this is the minimal ``/etc/.gitignore`` to use.
+* Use this as minimal ``/etc/.gitignore`` in case you'd like to track ``/etc/`` changes using git.
+
+``gitignore_global``:
+
+* Adds global ignores for temp files.
 
