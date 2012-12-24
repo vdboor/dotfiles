@@ -1,3 +1,5 @@
+[credential]
+	helper = osxkeychain
 [user]
 	name = Diederik van der Boor
 	email = vdboor@edoburu.nl
@@ -12,7 +14,7 @@
 	st = status
 	staged = diff --staged -C
 	unstage = reset HEAD
-	up = pull --rebase
+	up = pull --rebase --stat
 	diff-all = diff -C HEAD
 	lg = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
