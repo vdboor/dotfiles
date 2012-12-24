@@ -5,6 +5,17 @@ Feel free to use them, and take the useful stuff from it.
 
 Diederik
 
+Installation
+============
+
+Copy the files to the proper locations in ``/etc/``.
+
+The VIM files might need to be copied to ``/usr/share/vim/`` instead.
+See the instructions in the ``vimrc.local`` file, and fetch the submodules using::
+
+    git submodule update --init
+
+
 Features
 ========
 
@@ -26,9 +37,14 @@ Features
     username@ttys002 ~/Sites/example (master) $
     username@remote.example.com /srv/www $
 
-* Differ for Local shell (shows tty) and remote SSH shell (shows hostname)
-* Differ for Regular user (green prompt) or root user (red prompt)
-* Add git branch/status in the prompt
+* Differ for Local shell (shows tty) and remote SSH shell (shows hostname)>
+* Differ for Regular user (green prompt) or root user (red prompt).
+* Add git branch/status in the prompt.
+
+``.ackrc``:
+
+* Ack settings for JSON, RST files.
+* Ignore ``migrations`` and ``.idea`` (for Django projects).
 
 ``vimrc.local``:
 

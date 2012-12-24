@@ -6,8 +6,10 @@
 "
 " Activate this script by adding the following to /etc/vimrc:
 " if filereadable("/etc/vimrc.local")
-"   source("/etc/vim/vimrc.local")
+"   source /etc/vimrc.local
 " endif
+"
+" Also make sure to copy the "vimfiles" folder to the /usr/share/vim/ directory.
 "
 " Use ":help <option>" or ":help options"
 " for information about the various settings
