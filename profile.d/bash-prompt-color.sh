@@ -2,6 +2,15 @@
 
 # Bash Prompt Color script
 # Diederik van der Boor <vdboor --at-- codingdomain.com>
+#
+# Prompt color differs between user and root, and local and remote hosts.
+#
+# The git branch/status is included in the prompt when the __git_ps1 function is loaded.
+#
+# If needed, source the script manaully before this one.
+#  For Linux: /etc/bash_completion.d/git.sh
+#  For OS X: /usr/local/git/contrib/completion/git-prompt.bash
+#
 
 L_RED="\[\033[1;31m\]"
 L_GREEN="\[\033[1;32m\]"
@@ -74,9 +83,6 @@ fi
 PS1_PATH="$L_BLUE\w"
 
 # In case the git bash-completion script is already loaded, add it.
-# If needed, source the script manaully before this one.
-#  For Linux: /etc/bash_completion.d/git.sh
-#  For OS X: /usr/local/git/contrib/completion/git-completion.bash
 PS1_GIT=""
 if [ "`type -t __git_ps1`" = "function" ]; then
   PS1_GIT="$GRAY\$(__git_ps1 \"(%s) \")$L_BLUE"
