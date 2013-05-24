@@ -115,6 +115,8 @@ nmap :Q :q
 " Disable the annoying Ex mode, use Q for formatting
 map Q gq
 
+cnoremap w!! w !sudo sh -c "cat >%" <cr>
+
 " console menu
 "source $VIMRUNTIME/menu.vim
 set cpoptions-=<
