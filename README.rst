@@ -15,6 +15,12 @@ See the instructions in the ``vimrc.local`` file, and fetch the submodules using
 
     git submodule update --init
 
+Mac OS X
+--------
+
+::
+    ./mac-setup.sh
+
 
 Features
 ========
