@@ -45,15 +45,25 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
+TERM_PROFILE='Pro'
+CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
+  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
+fi
+
 # Show the ~/Library folder
 #chflags nohidden ~/Library
 
 # Add iOS Simulator to Launchpad
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app" "/Applications/iOS Simulator.app"
 
-# Privacy: don’t send search queries to Apple
+# Safari Privacy: don’t send search queries to Apple
 #defaults write com.apple.Safari UniversalSearchEnabled -bool false
 #defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+# Safari: Enable developper tools
+defaults write com.apple.Safari IncludeDebugMenu 1
 
 # Enable the WebKit Developer Tools in the Mac App Store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true

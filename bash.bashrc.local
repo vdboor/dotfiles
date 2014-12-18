@@ -40,8 +40,11 @@ export PIP_DOWNLOAD_CACHE=$HOME/Library/Caches/pip-downloads
 
 # Bash completion
 source /usr/local/bin/django_bash_completion.sh
-source /usr/local/git/contrib/completion/git-prompt.sh
-source /usr/local/git/contrib/completion/git-completion.bash
+gitfolder=/Library/Developer/CommandLineTools/usr
+#source /usr/local/git/contrib/completion/git-prompt.sh
+#source /usr/local/git/contrib/completion/git-completion.bash
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 
 
 # Make a nicer prompt

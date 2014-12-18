@@ -19,7 +19,8 @@ Mac OS X
 --------
 
 ::
-    ./mac-setup.sh
+    ./mac-defaults.sh
+    ./mac-copy.sh
 
 
 Features
