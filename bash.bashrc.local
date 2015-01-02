@@ -21,7 +21,7 @@ export FLEX_HOME=/opt/flex_sdk_4/
 
 export EDITOR=vim
 export LESS="$LESS -R"  # Handle color escape codes
-export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
 export GREP_COLOR=31
 
 
