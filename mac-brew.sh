@@ -4,7 +4,7 @@
 sudo curl https://raw.githubusercontent.com/django/django/master/extras/django_bash_completion -o /usr/local/bin/django_bash_completion.sh
 
 # Base tools
-brew install tree wget pstree colordiff ack
+brew install tree wget pstree colordiff ack lesspipe
 
 # Django development
 brew install gettext libjpeg libtiff libyaml
