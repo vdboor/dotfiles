@@ -1,10 +1,21 @@
 #!/bin/bash
+#
+# To find values, use:
+#
+#  - defaults read > 1.txt
+#  - make changes in the settings
+#  - defaults read > 2.txt
+#  - vimdiff 1.txt 2.txt
+#
 
 # Ask for the administrator password upfront
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Set root shell to /bin/bash (not /bin/sh)
+sudo chsh -s /bin/bash
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
@@ -30,6 +41,10 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Faster key repeat
+defaults write -g InitialKeyRepeat -int 25 # default 68
+defaults write -g KeyRepeat -int 2 # default not set
+
 # Disable auto-correct
 #defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
@@ -45,12 +60,14 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-TERM_PROFILE='Pro'
-CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
-if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
-  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
-fi
+# Dock resizing
+defaults write com.apple.dock largesize -int 100
+defaults write com.apple.dock magnification -int 1
+
+# Terminal style
+TERM_PROFILE="Pro"
+defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
+defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
 
 # Show the ~/Library folder
 #chflags nohidden ~/Library
@@ -68,7 +85,7 @@ defaults write com.apple.Safari IncludeDebugMenu 1
 # Enable the WebKit Developer Tools in the Mac App Store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 
-for app in "Dock" "Finder" "Safari" "SystemUIServer" "Terminal";
+for app in "Dock" "Finder" "Safari" "SystemUIServer"; # "Terminal";
 do
     killall "${app}" > /dev/null 2>&1
 done

@@ -15,7 +15,7 @@ alias grep='grep --colour=auto'
 alias diff='colordiff'
 alias memflush='echo flush_all | nc localhost 11211'
 
-export PATH=$PATH:/Library/PostgreSQL/9.2/bin:/usr/local/mysql/bin
+export PATH=$PATH:/Library/PostgreSQL/9.5/bin:/usr/local/mysql/bin
 
 export EDITOR=vim
 export LESS="$LESS -R"  # Handle color escape codes
@@ -44,6 +44,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/django_bash_completion.sh
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+
+export PYENV_ROOT=$(brew --prefix)/var/pyenv
 
 
 # Make a nicer prompt
