@@ -15,9 +15,7 @@ alias grep='grep --colour=auto'
 alias diff='colordiff'
 alias memflush='echo flush_all | nc localhost 11211'
 
-export PATH=$PATH:/opt/homebrew/bin:/opt/flex_sdk_4/bin:/Library/PostgreSQL/9.1/bin:/usr/local/mysql/bin:/usr/texbin
-
-export FLEX_HOME=/opt/flex_sdk_4/
+export PATH=$PATH:/Library/PostgreSQL/9.2/bin:/usr/local/mysql/bin
 
 export EDITOR=vim
 export LESS="$LESS -R"  # Handle color escape codes
@@ -35,16 +33,17 @@ export WORKON_HOME=~/Sites/virtualenvs
 export PROJECT_HOME=~/Sites/
 source /usr/local/bin/virtualenvwrapper.sh
 
-export PIP_DOWNLOAD_CACHE=$HOME/Library/Caches/pip-downloads
-
 
 # Bash completion
+
+# Avoid all, too slow on startup:
+#if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#  . $(brew --prefix)/etc/bash_completion
+#fi
+
 source /usr/local/bin/django_bash_completion.sh
-gitfolder=/Library/Developer/CommandLineTools/usr
-#source /usr/local/git/contrib/completion/git-prompt.sh
-#source /usr/local/git/contrib/completion/git-completion.bash
-source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
-source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 
 
 # Make a nicer prompt
