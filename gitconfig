@@ -14,11 +14,12 @@
 	st = status
 	staged = diff --staged -C
 	unstage = reset HEAD
+	versions = !git tag -l -n1 | sed -e 's/^v//' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n
 	up = pull --rebase --stat
 	diff-all = diff -C HEAD
 	lg = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
-	log-timeline = log --format='%Cred%h%Creset %an %Cgreen(%ar)%Creset - %s'
+	log-timeline = log --format='%Cred%h%Creset %an %Cgreen(%ad / %ar)%Creset - %s'
 	diff-stat = diff -b --stat=200
 	log-local = log --oneline origin..HEAD
 	log-fetched = log --oneline HEAD..origin/master
@@ -38,3 +39,11 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+[push]
+	default = simple
+[diff]
+	compactionHeuristic = true
+[branch]
+	autosetuprebase = always
+[rebase]
+	autoStash = true
