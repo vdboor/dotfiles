@@ -57,6 +57,9 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+# Airdrop on ethernet cards too
+#defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
