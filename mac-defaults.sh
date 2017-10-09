@@ -26,6 +26,9 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
+# Disable gamed being active all the time
+defaults write com.apple.gamed Disabled -bool true
+
 # Disable the “Are you sure you want to open this application?” dialog
 #defaults write com.apple.LaunchServices LSQuarantine -bool false
 
