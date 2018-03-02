@@ -47,6 +47,7 @@ Features
 * Differ for Local shell (shows tty) and remote SSH shell (shows hostname).
 * Differ for Regular user (green prompt) or root user (red prompt).
 * Add git branch/status in the prompt.
+* Show Kubernetes context/namespace.
 
 ``.ackrc``:
 

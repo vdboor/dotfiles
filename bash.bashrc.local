@@ -44,8 +44,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/django_bash_completion.sh
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-
-export PYENV_ROOT=$(brew --prefix)/var/pyenv
+source $(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh
 
 
 # Make a nicer prompt

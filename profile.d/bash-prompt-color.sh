@@ -6,10 +6,12 @@
 # Prompt color differs between user and root, and local and remote hosts.
 #
 # The git branch/status is included in the prompt when the __git_ps1 function is loaded.
+# The kubernetes prompt can be enabled with kube-ps1 (useful in combination with kubectx)
 #
 # If needed, source the script manaully before this one.
 #  For Linux: /etc/bash_completion.d/git.sh
 #  For OS X: /usr/local/git/contrib/completion/git-prompt.bash
+#            /usr/local/opt/kube-ps1/share/kube-ps1.sh
 #
 
 L_RED="\[\033[1;31m\]"
@@ -88,8 +90,16 @@ if [ "`type -t __git_ps1`" = "function" ]; then
   PS1_GIT="$GRAY\$(__git_ps1 \"(%s) \")$L_BLUE"
 fi
 
-PS1="$PS1_TITLE$PS1_USER $PS1_PATH $PS1_GIT\$ $RESET"
-unset -v PS1_TTY PS1_TITLE PS1_USER PS1_PATH PS1_GIT
+# In case kube-ps1 is installed, add it.
+PS1_KUBE=""
+if [ "`type -t kube_ps1`" = "function" ]; then
+  PS1_KUBE="\$(kube_ps1)"
+  KUBE_PS1_PREFIX="("
+  KUBE_PS1_SUFFIX=") "
+fi
+
+PS1="$PS1_TITLE$PS1_USER $PS1_PATH $PS1_GIT$PS1_KUBE\$ $RESET"
+unset -v PS1_TTY PS1_TITLE PS1_USER PS1_PATH PS1_GIT PS1_KUBE
 
 # Other magical prompts:
 PS2='> '
