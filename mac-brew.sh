@@ -29,5 +29,5 @@ sudo  mkdir /var/pgsql_socket/
 ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 
 # Fix loading _psycopg.so (could also set LD_LIBRARY_PATH, but this is easier)
-ln -s /Library/PostgreSQL/9.5/lib/libssl.1.0.0.dylib /usr/local/lib/
-ln -sf /Library/PostgreSQL/9.5/lib/libcrypto.1.0.0.dylib /usr/local/lib/
+ln -s /Library/PostgreSQL/9.6/lib/libssl.1.0.0.dylib /usr/local/lib/
+ln -sf /Library/PostgreSQL/9.6/lib/libcrypto.1.0.0.dylib /usr/local/lib/
