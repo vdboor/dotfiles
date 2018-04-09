@@ -79,7 +79,7 @@ defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROF
 #chflags nohidden ~/Library
 
 # Add iOS Simulator to Launchpad
-sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app" "/Applications/iOS Simulator.app"
+#sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app" "/Applications/iOS Simulator.app"
 
 # Safari Privacy: don’t send search queries to Apple
 #defaults write com.apple.Safari UniversalSearchEnabled -bool false
