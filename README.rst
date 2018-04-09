@@ -18,8 +18,12 @@ See the instructions in the ``vimrc.local`` file, and fetch the submodules using
 Mac OS X
 --------
 
-::
+To apply all settings to your system::
+
     ./mac-defaults.sh
+
+To copy all dotfiles::
+
     ./mac-copy.sh
 
 
