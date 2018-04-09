@@ -96,6 +96,9 @@ if [ "`type -t kube_ps1`" = "function" ]; then
   PS1_KUBE="\$(kube_ps1)"
   KUBE_PS1_PREFIX="("
   KUBE_PS1_SUFFIX=") "
+  KUBE_PS1_SEPARATOR=''
+  KUBE_PS1_CTX_COLOR=blue
+  KUBE_PS1_NS_COLOR=magenta
 fi
 
 PS1="$PS1_TITLE$PS1_USER $PS1_PATH $PS1_GIT$PS1_KUBE\$ $RESET"
