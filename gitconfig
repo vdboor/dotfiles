@@ -39,11 +39,12 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
-[push]
-	default = simple
 [diff]
 	compactionHeuristic = true
 [branch]
 	autosetuprebase = always
 [rebase]
 	autoStash = true
+[rerere]
+	enabled = true
+	autoupdate = true
