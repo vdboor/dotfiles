@@ -20,13 +20,26 @@
 	lg = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
 	log-timeline = log --format='%Cred%h%Creset %an %Cgreen(%ad / %ar)%Creset - %s'
+	reflog-timeline = reflog --format='%Cred%h%Creset %an %Cgreen(%cd / %cr)%Creset - %gd %gs -- %s'
 	diff-stat = diff -b --stat=200
 	log-local = log --oneline origin..HEAD
 	log-fetched = log --oneline HEAD..origin/master
 	svncommit = !git stash && git svn dcommit --rmdir && git stash pop
+	pr = !sh -c \"git fetch upstream pull/${1}/head:pr/${1} && git checkout pr/${1}\"
 [log]
 	decorate = short
 	date = local
+[diff]
+	compactionHeuristic = true
+[fetch]
+	pruneTags = true
+[branch]
+	autosetuprebase = always
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+	autoupdate = true
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
@@ -39,12 +52,3 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
-[diff]
-	compactionHeuristic = true
-[branch]
-	autosetuprebase = always
-[rebase]
-	autoStash = true
-[rerere]
-	enabled = true
-	autoupdate = true
