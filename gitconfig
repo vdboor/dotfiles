@@ -7,6 +7,7 @@
 	editor = vim
 	pager = less -FiXRMS
 	excludesfile = /etc/gitignore_global
+	attributesfile = /etc/gitattributes_global
 [color]
 	ui = auto
 [alias]
@@ -40,6 +41,8 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+[push]
+	default = current
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
