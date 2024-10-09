@@ -58,6 +58,10 @@ Features
 * Ack settings for JSON, RST files.
 * Ignore ``migrations`` and ``.idea`` (for Django projects).
 
+``starship.toml``:
+
+* prompt colors for all shells (install `starship <https://starship.rs/>`_).
+
 ``vimrc.local``:
 
 * see comments in the file

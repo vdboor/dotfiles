@@ -1,0 +1,40 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+format = "$username$hostname$python$directory$git_branch$git_state$git_status$kubernetes$jobs$character"
+
+[line_break]
+disabled = true
+
+# Disable the package module, hiding it from the prompt completely
+[aws]
+disabled = true
+
+[git_branch]
+style = "bold fg:8"
+
+[git_state]
+style = "bold fg:8"
+
+[git_status]
+style = "bold fg:8"
+
+[directory]
+style = "bold fg:27"
+truncate_to_repo = false
+
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+symbol = ""
+pyenv_version_name = false
+pyenv_prefix = ""
+style = "fg:34"
+
+[kubernetes]
+disabled = true
+symbol = "⎈ "
+style = "bold fg:27"
