@@ -7,10 +7,11 @@ sudo curl https://raw.githubusercontent.com/django/django/master/extras/django_b
 brew install tree wget pstree colordiff ack lesspipe gnupg pinentry-mac qlstephen
 
 # Cluster management
-brew install kubernetes-cli kubernetes-helm kube-ps1 kubectx kail
+brew tap boz/repo
+brew install kubernetes-cli helm kube-ps1 kubectx brew tap boz/repo
 
 # Development tools
-brew install pyenv git gettext libjpeg libtiff libyaml libsass libmemcached
+brew install libxml2 libxslt xz zlib libjpeg libtiff libyaml libmagic libsass libmemcached sqlite3 pyenv git gettext
 
 for file in `brew list gettext | grep '/bin/'`
 do
@@ -27,7 +28,3 @@ brew services start memcached redis mailhog
 # Or export PGHOST=/private/tmp/
 sudo  mkdir /var/pgsql_socket/
 ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
-
-# Fix loading _psycopg.so (could also set LD_LIBRARY_PATH, but this is easier)
-ln -s /Library/PostgreSQL/9.6/lib/libssl.1.0.0.dylib /usr/local/lib/
-ln -sf /Library/PostgreSQL/9.6/lib/libcrypto.1.0.0.dylib /usr/local/lib/
